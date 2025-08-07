@@ -1,10 +1,14 @@
 module top(
 	input CLK,
 	input rst,
-	output reg [7:0] out
+	output reg [7:0] out,
+	input [7:0] mem_out,
+	output reg [15:0] bus,
+	output wire mem_ram_we,
+	output wire mem_mar_we
 	);
 
-reg[15:0] bus;
+//reg[15:0] bus;
 reg[23:0] clk_slow;
 wire hlt;
 wire clk;
@@ -14,10 +18,10 @@ wire[1:0] reg_ext;
 wire reg_oe;
 wire reg_we;
 wire[15:0] reg_out;
-wire mem_mar_we;
-wire mem_ram_we;
+//wire mem_mar_we;
+//wire mem_ram_we;
 wire mem_oe;
-wire[7:0] mem_out;
+//wire[7:0] mem_out;
 wire ir_we;
 wire[7:0] ir_out;
 wire alu_cs;
@@ -81,7 +85,7 @@ reg_file reg_file(
 	.data_out(reg_out)
 );
 
-
+/*
 memory memory(
 	.clk(clk),
 	.rst(rst),
@@ -90,7 +94,7 @@ memory memory(
 	.bus(bus),
 	.out(mem_out)
 );
-
+*/
 
 ir ir(
 	.clk(clk),

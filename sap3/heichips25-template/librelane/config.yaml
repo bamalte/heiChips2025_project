@@ -3,7 +3,7 @@
 DESIGN_NAME: heichips25_template
 VERILOG_FILES: dir::../src/heichips25_template.sv
 CLOCK_PORT: clk
-CLOCK_PERIOD: 10 # 10ns = 100MHz
+CLOCK_PERIOD: 20 # 10ns = 100MHz
 
 # Reduce wasted space
 TOP_MARGIN_MULT: 1

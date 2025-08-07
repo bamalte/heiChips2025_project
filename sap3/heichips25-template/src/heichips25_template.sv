@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // Adapted from the Tiny Tapeout template
-/*
+
 `include "reg_file.v"
 `include "memory.v"
 `include "ir.v"
@@ -10,7 +10,7 @@
 `include "clock.v"
 `include "alu.v"
 `include "top.v"
-*/
+
 `default_nettype none
 
 module heichips25_template (
@@ -25,12 +25,25 @@ module heichips25_template (
 );
 
     // List all unused inputs to prevent warnings
-    wire _unused = &{ena, ui_in[7:1], uio_in[7:0]};
+    wire _unused = &{ena};
+
+    wire [15:0] bus;
+    (* keep *)wire mem_ram_we;
+    (* keep *)wire mem_mar_we;
+
+    assign uio_out = bus[7:0]; // Output the lower 8 bits of the bus to uio_out
+    assign uio_oe[5:0] = bus [13:8]; // Use the upper 8 bits of the bus to control output enable
+    assign uio_oe[6] = mem_ram_we;
+    assign uio_oe[7] = mem_mar_we;
 
     top sap_3_inst (
         .CLK(clk),
         .rst(~rst_n),
-        .out(uo_out)
+        .out(uo_out),
+        .mem_out(ui_in),
+        .bus(bus),
+        .mem_ram_we(mem_ram_we),
+        .mem_mar_we(mem_mar_we)
     );
 
 
