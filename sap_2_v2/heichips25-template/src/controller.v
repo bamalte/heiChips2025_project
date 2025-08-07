@@ -52,6 +52,10 @@ localparam FLAG_S = 0;
 reg[34:0] ctrl_word;
 
 reg[34:0] ctrl_rom[0:4095];
+
+ctrl_rom[0] = 35'b00010000000000000000000000000000000; // NOP
+ctrl_rom[1] = 35'b00000010000000000000000000000000000; //
+ctrl_rom[15] = 35'b00000000100000000000000000000000000; //
 /*
 initial begin
 	$readmemb("../simulation_srcs/ctrl_rom.bin", ctrl_rom);
