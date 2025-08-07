@@ -23,11 +23,17 @@ reg[15:0] mar;
 reg[15:0] mdr;
 
 always @(posedge rst) begin
-	mar <= 16'b0;
-	mdr <= 16'b0;
+//	mar <= 16'b0;
+//	mdr <= 16'b0;
+;
 end
 
 always @(posedge clk) begin
+	if (rst) begin
+        mar <= 16'b0;
+        mdr <= 16'b0;
+	end
+
 	if (mar_loadh) begin
 		mar[15:8] <= bus[15:8];
 	end
