@@ -3,6 +3,15 @@
 
 // Adapted from the Tiny Tapeout template
 
+`include "adder.v"
+`include "clock.v"
+`include "controller.v"
+`include "ir.v"
+`include "memory.v"
+`include "pc.v"
+`include "reg_a.v"
+`include "reg_b.v"
+`include "top.v"
 `default_nettype none
 
 module heichips25_template (
@@ -20,9 +29,9 @@ module heichips25_template (
     // List all unused inputs to prevent warnings
     wire _unused = &{ena, ui_in[7:1], uio_in[7:0], uo_out[7:0], uio_out[7:0], uio_oe[7:0]};
 
-    top sap2_inst (
-        .CLK(clk),
-        .RST(~rst_n) // Active low reset
+    top sap1_inst (
+        .CLK(clk)
+        //.RST(~rst_n) // Active low reset
     );
 
     

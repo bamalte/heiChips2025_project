@@ -6,12 +6,14 @@ module memory(
 	output[7:0] out
 );
 
-initial begin
-	$readmemh("program.bin", ram);
-end
-
-reg[3:0] mar;
 reg[7:0] ram[0:15];
+
+/*
+initial begin
+	$readmemh("../simulation_srcs/program.bin", ram);
+end
+*/
+reg[3:0] mar;
 
 always @(posedge clk, posedge rst) begin
 	if (rst) begin

@@ -1,9 +1,29 @@
+
 module top(
 	input CLK
 );
 
-
 reg[7:0] bus;
+wire rst;
+wire hlt;
+wire clk;
+wire pc_inc;
+wire pc_en;
+wire[7:0] pc_out;
+wire mar_load;
+wire mem_en;
+wire[7:0] mem_out;
+wire a_load;
+wire a_en;
+wire[7:0] a_out;
+wire b_load;
+wire[7:0] b_out;
+wire adder_sub;
+wire adder_en;
+wire[7:0] adder_out;
+wire ir_load;
+wire ir_en;
+wire[7:0] ir_out;
 
 always @(*) begin
 	if (ir_en) begin
@@ -21,18 +41,13 @@ always @(*) begin
 	end
 end
 
-wire rst;
-wire hlt;
-wire clk;
+
 clock clock(
 	.hlt(hlt),
 	.clk_in(CLK),
 	.clk_out(clk)
 );
 
-wire pc_inc;
-wire pc_en;
-wire[7:0] pc_out;
 pc pc(
 	.clk(clk),
 	.rst(rst),
@@ -41,9 +56,6 @@ pc pc(
 );
 
 
-wire mar_load;
-wire mem_en;
-wire[7:0] mem_out;
 memory mem(
 	.clk(clk),
 	.rst(rst),
@@ -53,20 +65,16 @@ memory mem(
 );
 
 
-wire a_load;
-wire a_en;
-wire[7:0] a_out;
 reg_a reg_a(
 	.clk(clk),
 	.rst(rst),
+
 	.load(a_load),
 	.bus(bus),
 	.out(a_out)
 );
 
 
-wire b_load;
-wire[7:0] b_out;
 reg_b reg_b(
 	.clk(clk),
 	.rst(rst),
@@ -76,9 +84,7 @@ reg_b reg_b(
 );
 
 
-wire adder_sub;
-wire adder_en;
-wire[7:0] adder_out;
+
 adder adder(
 	.a(a_out),
 	.b(b_out),
@@ -87,9 +93,7 @@ adder adder(
 );
 
 
-wire ir_load;
-wire ir_en;
-wire[7:0] ir_out;
+
 ir ir(
 	.clk(clk),
 	.rst(rst),
