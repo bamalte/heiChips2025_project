@@ -10,7 +10,7 @@
 `include "memory.v"
 `include "pc.v"
 `include "reg_a.v"
-`include "reg_b.v"
+`include "reg_b.v"5,
 `include "top.v"
 
 `default_nettype none

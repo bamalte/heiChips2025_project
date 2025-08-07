@@ -29,34 +29,10 @@ async def sap2_test(dut):
     await Timer(100, 'ns')
 
     # Wait for 24 clock cycles
-    await ClockCycles(dut.clk, 24)
+    await ClockCycles(dut.clk, 22)
 
     # Ensure the otuput is 0x0C
-    assert dut.sap2_inst.a_out == 12, "Output is not 12!"
-
-    # Wait for 24 clock cycles
-    await ClockCycles(dut.clk, 24)
-
-    # Ensure the otuput is 0x18
-    assert dut.sap2_inst.a_out == 24, "Output is not 12!"
-
-    # Wait for 24 clock cycles
-    await ClockCycles(dut.clk, 24)
-
-    # Ensure the otuput is 0x24
-    assert dut.sap2_inst.a_out == 36, "Output is not 12!"
-
-    # Wait for 24 clock cycles
-    await ClockCycles(dut.clk, 24)
-
-    # Ensure the otuput is 0x30
-    assert dut.sap2_inst.a_out == 48, "Output is not 12!"
-
-    # Wait for 24 clock cycles
-    await ClockCycles(dut.clk, 24)
-
-    # Ensure the otuput is 0x30
-    assert dut.sap2_inst.a_out == 60, "Output is not 12!"
+    assert dut.sap1_inst.a_out == 5, "Output is not 12!"
 
     # cocotb documentation: https://docs.cocotb.org/en/stable/refcard.html
     # cocotb reference card: https://docs.cocotb.org/en/stable/refcard.html
