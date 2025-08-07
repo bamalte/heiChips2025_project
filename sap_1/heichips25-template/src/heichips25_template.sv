@@ -12,6 +12,7 @@
 `include "reg_a.v"
 `include "reg_b.v"
 `include "top.v"
+
 `default_nettype none
 
 module heichips25_template (
@@ -30,7 +31,9 @@ module heichips25_template (
     wire _unused = &{ena, ui_in[7:1], uio_in[7:0], uo_out[7:0], uio_out[7:0], uio_oe[7:0]};
 
     top sap1_inst (
-        .CLK(clk)
+        .CLK(clk),
+        .PC_OUT(uo_out),
+        .MEM_OUT(uio_out)
         //.RST(~rst_n) // Active low reset
     );
 

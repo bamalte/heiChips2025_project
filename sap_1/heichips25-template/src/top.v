@@ -1,7 +1,11 @@
 
 module top(
-	input CLK
+	input CLK,
+	input RST,
+	output [7:0] PC_OUT,
+	output [7:0] MEM_OUT
 );
+
 
 reg[7:0] bus;
 wire rst;
@@ -24,6 +28,10 @@ wire[7:0] adder_out;
 wire ir_load;
 wire ir_en;
 wire[7:0] ir_out;
+
+assign PC_OUT = pc_out;
+assign MEM_OUT = mem_out;
+assign rst = RST;
 
 always @(*) begin
 	if (ir_en) begin
