@@ -14,6 +14,9 @@ module memory(
 );
 
 reg[7:0]  ram[0:63];
+
+
+
 /*
 initial begin
 	$readmemh("../simulation_srcs/program.bin", ram);

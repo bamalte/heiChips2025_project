@@ -2,8 +2,10 @@ module top(
 	input CLK,
 	input RST,
 	output[7:0] BUS,
-	output[7:0] A_OUT
+	output[7:0] CTRL_MEMORY,
+	input[7:0] SRAM_OUT
 );
+
 
 wire[2:0] alu_op;
 wire alu_load;
@@ -46,10 +48,16 @@ wire flags_lda;
 wire flags_ldb;
 wire flags_ldc;
 
+assign CTRL_MEMORY = {
+	mar_loadh, mar_loadl, mdr_load,
+	ram_load, ram_enh, ram_enl,
+	call, ret
+};
+
 reg[15:0] bus;
 
-assign A_OUT = a_out;
 assign BUS = bus[7:0];
+assign mem_out = SRAM_OUT;
 
 //assign BUS = bus;
 
@@ -97,7 +105,7 @@ ir ir(
 	.bus(bus),
 	.out(ir_out)
 );
-
+/*
 memory mem(
 	.clk(clk),
 	.rst(rst),
@@ -112,7 +120,7 @@ memory mem(
 	.bus(bus),
 	.out(mem_out)
 );
-
+*/
 register reg_a(
 	.clk(clk),
 	.rst(rst),
