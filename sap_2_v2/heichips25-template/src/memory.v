@@ -13,12 +13,12 @@ module memory(
 	output[15:0] out
 );
 
-reg[7:0]  ram[0:65535];
-
+reg[7:0]  ram[0:63];
+/*
 initial begin
 	$readmemh("../simulation_srcs/program.bin", ram);
 end
-
+*/
 reg[15:0] mar;
 reg[15:0] mdr;
 

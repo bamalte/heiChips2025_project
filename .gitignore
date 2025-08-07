@@ -1,1 +1,4 @@
 sap_1/heichips25-template/librelane/runs/*
+sap_v2_2/heichips25-template/librelane/runs/*
+sap_v2_2/heichips25-template/tb/__pycache__*
+sap_v2_2/heichips25-template/tb/sim_build*

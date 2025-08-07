@@ -52,10 +52,11 @@ localparam FLAG_S = 0;
 reg[34:0] ctrl_word;
 
 reg[34:0] ctrl_rom[0:4095];
+/*
 initial begin
 	$readmemb("../simulation_srcs/ctrl_rom.bin", ctrl_rom);
 end
-
+*/
 reg stage_rst;
 
 reg[3:0] stage;

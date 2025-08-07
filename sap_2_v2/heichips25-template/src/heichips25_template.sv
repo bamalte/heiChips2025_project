@@ -3,6 +3,16 @@
 
 // Adapted from the Tiny Tapeout template
 
+`include "alu.v"
+`include "clock.v"
+`include "controller.v"
+`include "flags.v"
+`include "ir.v"
+`include "memory.v"
+`include "pc.v"
+`include "register.v"
+`include "top.v"
+
 `default_nettype none
 
 module heichips25_template (
