@@ -9,3 +9,8 @@
 - [ ] 
 - [ ] 
 - [ ] 
+
+
+### System overview
+
+![System overview](drawings/system_overview.svg)
