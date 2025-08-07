@@ -1,0 +1,3 @@
+[submodule "sap_2/heichips25-template"]
+	path = sap_2/heichips25-template
+	url = https://github.com/FPGA-Research/heichips25-template.git
