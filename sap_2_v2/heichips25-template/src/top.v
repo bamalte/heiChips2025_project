@@ -1,7 +1,6 @@
 module top(
 	input CLK,
 	input RST
-	//inout BUS [15:0]
 );
 
 wire[2:0] alu_op;

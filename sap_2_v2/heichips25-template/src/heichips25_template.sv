@@ -13,8 +13,8 @@ module heichips25_template (
     output wire [7:0] uio_oe,   // IOs: Enable path (active high: 0=input, 1=output)
     input  wire       ena,      // always 1 when the design is powered, so you can ignore it
     input  wire       clk,      // clock
-    input  wire       rst_n,     // reset_n - low to reset
-    inout  wire [15:0] bus
+    input  wire       rst_n     // reset_n - low to reset
+
 );
 
     // List all unused inputs to prevent warnings
@@ -23,7 +23,6 @@ module heichips25_template (
     top sap2_inst (
         .CLK(clk),
         .RST(~rst_n) // Active low reset
-        .BUS(bus)
     );
 
     
