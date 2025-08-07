@@ -1,7 +1,7 @@
 module top(
 	input CLK,
 	input RST,
-	output[15:0] BUS,
+	output[7:0] BUS,
 	output[7:0] A_OUT
 );
 
@@ -49,7 +49,7 @@ wire flags_ldc;
 reg[15:0] bus;
 
 assign A_OUT = a_out;
-assign BUS = bus;
+assign BUS = bus[7:0];
 
 //assign BUS = bus;
 

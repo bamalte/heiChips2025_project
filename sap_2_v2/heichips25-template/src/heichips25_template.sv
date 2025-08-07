@@ -29,11 +29,12 @@ module heichips25_template (
 
     // List all unused inputs to prevent warnings
     wire _unused = &{ena, ui_in[7:1], uio_in[7:0], uo_out/*[7:0]*/, uio_out[7:0], uio_oe[7:0]};
-assign  uo_out=0;
-assign uio_out=0;
+
     top sap2_inst (
         .CLK(clk),
-        .RST(~rst_n) // Active low reset
+        .RST(~rst_n), // Active low reset
+        .BUS(uio_out), // Connect only lower 8 bits of BUS to uio_out
+        .A_OUT(uo_out) // Address output
     );
 
     
