@@ -33,8 +33,8 @@ module heichips25_template (
     top sap1_inst (
         .CLK(clk),
         .PC_OUT(uo_out),
-        .MEM_OUT(uio_out)
-        //.RST(~rst_n) // Active low reset
+        .MEM_OUT(uio_out),
+        .RST(~rst_n) // Active low reset
     );
 
     
