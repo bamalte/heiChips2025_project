@@ -37,6 +37,7 @@ wire[7:0] alu_flags;
 wire[7:0] alu_out;
 wire display;
 
+
 always @(posedge clk, posedge rst) begin
 	if (rst) begin
 		out = 8'b0;
@@ -44,7 +45,6 @@ always @(posedge clk, posedge rst) begin
 		out = alu_out;
 	end
 end
-
 
 always @(*) begin
 	bus = 16'b0;

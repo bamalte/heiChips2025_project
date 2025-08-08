@@ -28,18 +28,22 @@ module heichips25_template (
     wire _unused = &{ena};
 
     wire [15:0] bus;
-    (* keep *)wire mem_ram_we;
-    (* keep *)wire mem_mar_we;
+    wire mem_ram_we;
+    wire mem_mar_we;
+    wire [7:0] out_unused;
+    wire temp = out_unused[0] ^ out_unused[1] ^ out_unused[2] ^ out_unused[3] ^ out_unused[4] ^ out_unused[5] ^ out_unused[6] ^ out_unused[7];
 
-    assign uio_out = bus[7:0]; // Output the lower 8 bits of the bus to uio_out
-    assign uio_oe[5:0] = bus [13:8]; // Use the upper 8 bits of the bus to control output enable
-    assign uio_oe[6] = mem_ram_we;
-    assign uio_oe[7] = mem_mar_we;
+    assign uio_out = bus[7:0]; 
+    assign uio_oe = bus [15:8];
+    assign uo_out[0] = mem_ram_we;
+    assign uo_out[1] = mem_mar_we;
+    assign uo_out[2] = temp;
+    assign uo_out[3:7] = 5'b0; // Unused outputs
 
     top sap_3_inst (
         .CLK(clk),
         .rst(~rst_n),
-        .out(uo_out),
+        .out(out_unused),
         .mem_out(ui_in),
         .bus(bus),
         .mem_ram_we(mem_ram_we),
