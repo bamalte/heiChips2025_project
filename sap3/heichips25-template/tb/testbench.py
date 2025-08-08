@@ -22,13 +22,13 @@ async def sap_three_test(dut):
 
     # TODO CHANGE CHANGE CHANGE CHANGE CHANGE
     # Reset the design for 100ns
-    dut.io_in.value = 1
-    await Timer(100, 'ns')
     dut.io_in.value = 0
+    await Timer(100, 'ns')
+    dut.io_in.value = 1
     await Timer(100, 'ns')
 
     # Wait for 24 clock cycles
-    await ClockCycles(dut.clk, 40)
+    await ClockCycles(dut.clk, 5000)
 
     # Ensure the otuput is 0x0C
     assert dut.heichips25_template.out_unused == 1, "Output is not 1!"
