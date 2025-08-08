@@ -1,7 +1,7 @@
 # heiChips2025_project
 
 ## Project idea
-Our project idea was to fit a small 8-bit core on our tile. We wanted to use the SRAM on the chip as RAM for our core and the FPGA fabric for routing between the core and SRAM, and for housing one custom instruction (acceleator) that could be dynamically reconfigured by triggering a partial FPGA reconfiguration, while the connection to the SRAM stays intact and the core can ideally keep working.
+Our project idea was to fit a small 8-bit core on our tile. We wanted to use the SRAM on the chip as RAM for our core and the FPGA fabric for routing between the core and SRAM, and for housing one custom instruction/acceleator that could be dynamically reconfigured by triggering a partial FPGA reconfiguration, while the connection to the SRAM stays intact and the core can ideally keep working.
 On our quest to finding a suitable small core, we found the SAP (Simple-As-Possible Computer) core. This was first described in the book "Digital Computer Electronics" by Albert Paul Malvino and Jerald A. Brown. SAP-2 and 3 are Turing-complete [[1]](#ref1). There is source code under an MIT license and an extensive documentation by Austin Morlan available under [[2-5]](#ref5). This was the starting point for this project.
 
 ## First Approach: SAP-1 
@@ -45,11 +45,14 @@ The SAP-3 [[4]](#ref4) uses the same instruction set as the Intel 8085, but omit
 The source code for all three SAP versions can be found here: [[5]](#ref5)
 ## System overview
 
-![System overview](drawings/system_overview.svg)
+<figure>
+  <img src="drawings/system_overview.svg" alt="">
+  <figcaption>Figure 5: </figcaption>
+</figure>
 
 ## TODOs
 
-- [ ] 
+- [ ] Simulation
 - [ ] 
 - [ ] 
 - [ ] 
