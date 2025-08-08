@@ -11,6 +11,8 @@
 `include "alu.v"
 `include "top.v"
 
+// THIS IS THE SIMULATION 
+
 `default_nettype none
 
 module heichips25_template (
