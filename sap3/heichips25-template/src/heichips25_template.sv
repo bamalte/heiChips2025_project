@@ -2,6 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // Adapted from the Tiny Tapeout template
+
+// THIS IS THE SIMULATION
+
 /*
 `include "reg_file.v"
 `include "memory.v"
