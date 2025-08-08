@@ -29,12 +29,11 @@ async def counter_test(dut):
     await Timer(100, 'ns')
 
     # Wait for 24 clock cycles
-    await ClockCycles(dut.clk, 18)
+    await ClockCycles(dut.clk, 40)
 
     # Ensure the otuput is 0x0C
     assert dut.uo_out == 1, "Output is not 1!"
 
-    
    
     # cocotb documentation: https://docs.cocotb.org/en/stable/refcard.html
     # cocotb reference card: https://docs.cocotb.org/en/stable/refcard.html

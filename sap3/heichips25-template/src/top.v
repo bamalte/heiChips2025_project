@@ -85,7 +85,7 @@ reg_file reg_file(
 	.data_out(reg_out)
 );
 
-/*
+
 memory memory(
 	.clk(clk),
 	.rst(rst),
@@ -94,7 +94,7 @@ memory memory(
 	.bus(bus),
 	.out(mem_out)
 );
-*/
+
 
 ir ir(
 	.clk(clk),

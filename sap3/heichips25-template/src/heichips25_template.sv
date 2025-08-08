@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // Adapted from the Tiny Tapeout template
-
+/*
 `include "reg_file.v"
 `include "memory.v"
 `include "ir.v"
@@ -10,9 +10,7 @@
 `include "clock.v"
 `include "alu.v"
 `include "top.v"
-
-// THIS IS THE SIMULATION 
-
+*/
 `default_nettype none
 
 module heichips25_template (
