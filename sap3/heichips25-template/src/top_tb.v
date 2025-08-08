@@ -1,154 +1,80 @@
-module top_tb();
+module top_tb(
+    input  wire  clk,
+    input  wire [8-1:0] io_in,
+    output wire [8-1:0] io_out,
+    output wire [8-1:0] io_oeb
+);
 
 
-initial begin
-	$dumpfile("top_tb.vcd");
-	$dumpvars(0, top_tb);
-	for (i = 0; i < 12; i++) begin
-		$dumpvars(0, reg_file.data[i]);
-	end
-	for (i = 230; i < 256; i++) begin
-		$dumpvars(0, memory.ram[i]);
-	end
-	rst = 1;
-	#1 rst = 0;
+logic [7:0] ui_in;
+logic [7:0] uo_out;
+logic [7:0] uio_in;
+logic [7:0] uio_out;
+logic [7:0] uio_oe;
+logic       rst_n;
+
+heichips25_template heichips25_template_inst (
+	.ui_in      (ui_in),
+	.uo_out     (uo_out),
+	.uio_in     (uio_in),
+	.uio_out    (uio_out),
+	.uio_oe     (uio_oe),
+	.ena        (1'b1),
+	.clk				(clk),
+	.rst_n      (rst_n)
+);
+
+logic [ 9:0] sram_addr;
+logic [31:0] sram_bm;
+logic [31:0] sram_din;
+logic        sram_wen;
+logic        sram_men;
+logic        sram_ren;
+logic [31:0] sram_dout;
+
+IHP_SRAM_1024x32_wrapper IHP_SRAM_1024x32_wrapper (
+		.clk   (clk),
+		.ADDR  (sram_addr),
+		.BM    (sram_bm),
+		.DIN   (sram_din),
+		.WEN   (sram_wen),
+		.MEN   (sram_men),
+		.REN   (sram_ren),
+		.DOUT  (sram_dout)
+);
+
+reg[15:0] mar;
+
+always @(posedge clk) begin
+if (!rst_n)
+		mar <= 16'b0;
+else if ( uo_out[1] )
+mar <= {uio_oe[7:0], uio_out[7:0]};
 end
 
-reg clk_in = 0;
-integer i;
-initial begin
-	for (i = 0; i < 8096; i++) begin
-		#1 clk_in = ~clk_in;
-	end
+always @(posedge clk) begin
+if ( uo_out[0] )
+	sram_wen <= uo_out[0];
+else
+	sram_wen <= 1'b0;
 end
 
-reg[7:0] out;
-always @(posedge clk, posedge rst) begin
-	if (rst) begin
-		out = 8'b0;
-	end else if (display) begin
-		out = alu_out;
-	end
-end
+assign rst_n = io_in[0];
 
-reg[15:0] bus;
+assign sram_addr = mar[9:0];
+assign sram_bm = {24'b0, 8'hFF};
+assign sram_din = {24'b0, uio_out[7:0]};
+assign sram_men = 1'b1;
+assign sram_ren = 1'b1;
 
-always @(*) begin
-	bus = 16'b0;
+assign ui_in = sram_dout[7:0];
 
-	if (reg_oe)
-		bus = reg_out;
-	else if (mem_oe)
-		bus = {8'b0, mem_out};
-	else if (alu_oe)
-		bus = {8'b0, alu_out};
-	else if (alu_flags_oe)
-		bus = {8'b0, alu_flags};
-end
+assign io_out[7:0] = sram_dout[7:0]; 
+assign io_out[15:8] = sram_din[7:0];
+assign io_out[25:16] = sram_addr;
+assign io_out[31:26] = '0;
 
-reg rst;
-wire hlt;
-wire clk;
-clock clock(
-	.hlt(hlt),
-	.clk_in(clk_in),
-	.clk_out(clk)
-);
-
-wire[4:0] reg_rd_sel;
-wire[4:0] reg_wr_sel;
-wire[1:0] reg_ext;
-wire reg_oe;
-wire reg_we;
-wire[15:0] reg_out;
-reg_file reg_file(
-	.clk(clk),
-	.rst(rst),
-	.rd_sel(reg_rd_sel),
-	.wr_sel(reg_wr_sel),
-	.ext(reg_ext),
-	.we(reg_we),
-	.data_in(bus),
-	.data_out(reg_out)
-);
-
-wire mem_mar_we;
-wire mem_ram_we;
-wire mem_oe;
-wire[7:0] mem_out;
-memory memory(
-	.clk(clk),
-	.rst(rst),
-	.mar_we(mem_mar_we),
-	.ram_we(mem_ram_we),
-	.bus(bus),
-	.out(mem_out)
-);
-
-wire ir_we;
-wire[7:0] ir_out;
-ir ir(
-	.clk(clk),
-	.rst(rst),
-	.we(ir_we),
-	.bus(bus[7:0]),
-	.out(ir_out)
-);
-
-wire alu_cs;
-wire alu_flags_we;
-wire alu_a_we;
-wire alu_a_store;
-wire alu_a_restore;
-wire alu_tmp_we;
-wire alu_oe;
-wire alu_flags_oe;
-wire[4:0] alu_op;
-wire[7:0] alu_flags;
-wire[7:0] alu_out;
-alu alu(
-	.clk(clk),
-	.rst(rst),
-	.cs(alu_cs),
-	.flags_we(alu_flags_we),
-	.a_we(alu_a_we),
-	.a_store(alu_a_store),
-	.a_restore(alu_a_restore),
-	.tmp_we(alu_tmp_we),
-	.op(alu_op),
-	.bus(bus[7:0]),
-	.flags(alu_flags),
-	.out(alu_out)
-);
-
-controller controller(
-	.clk(clk),
-	.rst(rst),
-	.opcode(ir_out),
-	.flags(alu_flags),
-	.out({
-		display,
-		hlt,
-		alu_cs,
-		alu_flags_we,
-		alu_a_we,
-		alu_a_store,
-		alu_a_restore,
-		alu_tmp_we,
-		alu_op,
-		alu_oe,
-		alu_flags_oe,
-		reg_rd_sel,
-		reg_wr_sel,
-		reg_ext,
-		reg_oe,
-		reg_we,
-		mem_ram_we,
-		mem_mar_we,
-		mem_oe,
-		ir_we
-		})
-);
+assign io_oeb[0] = 1'b1; // input
+assign io_oeb[31:1] = 32'b0; // output
 
 endmodule
-

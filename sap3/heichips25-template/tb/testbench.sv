@@ -7,24 +7,24 @@ module testbench;
         $dumpvars(0, testbench);
     end
 
-    logic [7:0] ui_in;
-    logic [7:0] uo_out;
-    logic [7:0] uio_in;
-    logic [7:0] uio_out;
-    logic [7:0] uio_oe;
-    logic       ena;
-    logic       clk;
-    logic       rst_n;
+    // Parameters
+    localparam int NUM_IO = 8; // Change as needed or `define NUM_IO elsewhere
 
-    tt_um_example tt_um_example (
-        .ui_in,
-        .uo_out,
-        .uio_in,
-        .uio_out,
-        .uio_oe,
-        .ena,
-        .clk,
-        .rst_n
+   // Testbench signals
+    logic clk;
+    logic [NUM_IO-1:0] io_in;
+    logic [NUM_IO-1:0] io_out;
+    logic [NUM_IO-1:0] io_oeb;
+
+    // DUT instantiation
+    top_tb dut (
+        .clk    (clk),
+        .io_in  (io_in),
+        .io_out (io_out),
+        .io_oeb (io_oeb)
     );
-
 endmodule
+
+ 
+
+ 

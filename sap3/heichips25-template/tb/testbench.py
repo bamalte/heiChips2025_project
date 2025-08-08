@@ -11,28 +11,27 @@ from cocotb.triggers import Timer, ClockCycles
 
 
 @cocotb.test()
-async def counter_test(dut):
+async def sap_three_test(dut):
     """Testing the counter of the design."""
     
     # Create a clock with a period of 10ns = 100MHz
     clock = Clock(dut.clk, 10, 'ns')
     await cocotb.start(clock.start())
 
-    dut.ena.value    = 1 # always 1
-    dut.ui_in.value  = 0
-    dut.uio_in.value = 0
+    dut.io_in.value  = 0
 
+    # TODO CHANGE CHANGE CHANGE CHANGE CHANGE
     # Reset the design for 100ns
-    dut.rst_n.value = 0
+    dut.io_in.value = 1
     await Timer(100, 'ns')
-    dut.rst_n.value = 1
+    dut.io_in.value = 0
     await Timer(100, 'ns')
 
     # Wait for 24 clock cycles
     await ClockCycles(dut.clk, 40)
 
     # Ensure the otuput is 0x0C
-    assert dut.uo_out == 1, "Output is not 1!"
+    assert dut.heichips25_template.out_unused == 1, "Output is not 1!"
 
    
     # cocotb documentation: https://docs.cocotb.org/en/stable/refcard.html
@@ -62,9 +61,10 @@ if __name__ == "__main__":
         defines = {'FUNCTIONAL': True, 'UNIT_DELAY': '#0'}
     else:
         sources.extend(list(testbench_path.glob('../src/*')))
+        print(f"Using sources: {sources}")
         defines = {'RTL': True}
 
-    hdl_toplevel = "heichips25_template"
+    hdl_toplevel = "top_tb"
 
     runner = get_runner(sim)
     runner.build(
@@ -78,7 +78,7 @@ if __name__ == "__main__":
 
     runner.test(
         hdl_toplevel=hdl_toplevel,
-        test_module='testbench',
+        test_module='testbench,',
         timescale=['1ns', '1ps'],
         waves=True,
         plusargs=['--trace-file', f'{hdl_toplevel}.fst']  if sim == 'verilator' else [],

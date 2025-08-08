@@ -37,6 +37,7 @@ wire[7:0] alu_flags;
 wire[7:0] alu_out;
 wire display;
 
+
 always @(posedge clk, posedge rst) begin
 	if (rst) begin
 		out = 8'b0;
@@ -44,7 +45,6 @@ always @(posedge clk, posedge rst) begin
 		out = alu_out;
 	end
 end
-
 
 always @(*) begin
 	bus = 16'b0;
@@ -85,7 +85,7 @@ reg_file reg_file(
 	.data_out(reg_out)
 );
 
-
+/*
 memory memory(
 	.clk(clk),
 	.rst(rst),
@@ -94,7 +94,7 @@ memory memory(
 	.bus(bus),
 	.out(mem_out)
 );
-
+*/
 
 ir ir(
 	.clk(clk),
