@@ -28,7 +28,7 @@ async def sap_three_test(dut):
     await Timer(100, 'ns')
 
     # Wait for 24 clock cycles
-    await ClockCycles(dut.clk, 5000)
+    await ClockCycles(dut.clk, 9000)
 
     # Ensure the otuput is 0x0C
     assert dut.heichips25_template.out_unused == 1, "Output is not 1!"

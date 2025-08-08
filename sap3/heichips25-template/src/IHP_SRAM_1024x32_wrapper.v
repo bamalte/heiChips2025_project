@@ -15,17 +15,23 @@ module IHP_SRAM_1024x32_wrapper (
     initial begin
 	$readmemh("../program.bin", mem);
     end
-
+    
     always_ff @(posedge clk) begin
         // Write on WEN
         if (WEN)
             mem[ADDR] <= DIN;
 
-        // Read on REN
-        if (REN)
-            DOUT <= mem[ADDR];
-        else
-            DOUT <= 32'b0;
+
     end
+    
+    // Read on REN
+    always_comb begin
+        if (REN)
+            DOUT = mem[ADDR];
+        else
+            DOUT = 32'b0;
+    end
+    
+    
 
 endmodule

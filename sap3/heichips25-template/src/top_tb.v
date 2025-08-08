@@ -5,7 +5,6 @@ module top_tb(
     output wire [8-1:0] io_oeb
 );
 
-
 logic [7:0] ui_in;
 logic [7:0] uo_out;
 logic [7:0] uio_in;
@@ -47,25 +46,27 @@ reg[15:0] mar;
 
 always @(posedge clk) begin
 if (!rst_n)
-		mar <= 16'b0;
-else if ( uo_out[1] )
-mar <= {uio_oe[7:0], uio_out[7:0]};
+	mar <= 16'b0;
+else if ( uo_out[1] ) // mem_mar_we
+	mar <= {uio_oe[7:0], uio_out[7:0]};
 end
 
+assign sram_wen = uo_out[0]; // mem_ram_we
+/*
 always @(posedge clk) begin
-if ( uo_out[0] )
-	sram_wen <= uo_out[0];
+if ( uo_out[0] ) // mem_ram_we
+	sram_wen <= 1'b1;
 else
 	sram_wen <= 1'b0;
 end
-
+*/
 assign rst_n = io_in[0];
 
 assign sram_addr = mar[9:0];
 assign sram_bm = {24'b0, 8'hFF};
 assign sram_din = {24'b0, uio_out[7:0]};
 assign sram_men = 1'b1;
-assign sram_ren = 1'b1;
+assign sram_ren = ~sram_wen;
 
 assign ui_in = sram_dout[7:0];
 
