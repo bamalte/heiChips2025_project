@@ -1,5 +1,0 @@
-`verilator_config
-lint_off -rule DECLFILENAME
-lint_off -rule EOFNEWLINE
-lint_off -rule UNDRIVEN -file "/home/user/Documents/heiChips2025_project/sap_1/heichips25-template/librelane/runs/RUN_2025-08-07_17-25-14/tmp/037f80c261c04dbb88ee5475146701c6.bb.v"
-lint_off -rule UNUSEDSIGNAL -file "/home/user/Documents/heiChips2025_project/sap_1/heichips25-template/librelane/runs/RUN_2025-08-07_17-25-14/tmp/037f80c261c04dbb88ee5475146701c6.bb.v"

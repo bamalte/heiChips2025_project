@@ -1,7 +1,0 @@
-
-16. Executing PROC_DLATCH pass (convert process syncs to latches).
-No latch inferred for signal `\alu.\alu' from process `\alu.$proc$/home/user/Documents/heiChips2025_project/sap_2_v2/heichips25-template/src/alu.v:31$43'.
-No latch inferred for signal `\controller.\ctrl_word' from process `\controller.$proc$/home/user/Documents/heiChips2025_project/sap_2_v2/heichips25-template/src/controller.v:75$7'.
-No latch inferred for signal `\controller.\stage_rst' from process `\controller.$proc$/home/user/Documents/heiChips2025_project/sap_2_v2/heichips25-template/src/controller.v:75$7'.
-No latch inferred for signal `\controller.$mem2bits$\ctrl_rom$/home/user/Documents/heiChips2025_project/sap_2_v2/heichips25-template/src/controller.v:84$4' from process `\controller.$proc$/home/user/Documents/heiChips2025_project/sap_2_v2/heichips25-template/src/controller.v:75$7'.
-No latch inferred for signal `\top.\bus' from process `\top.$proc$/home/user/Documents/heiChips2025_project/sap_2_v2/heichips25-template/src/top.v:53$3'.

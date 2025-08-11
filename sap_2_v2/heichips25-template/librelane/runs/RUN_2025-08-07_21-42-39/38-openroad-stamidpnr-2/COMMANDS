@@ -1,1 +1,0 @@
-openroad -exit -no_splash -metrics /home/user/Documents/heiChips2025_project/sap_2_v2/heichips25-template/librelane/runs/RUN_2025-08-07_21-42-39/38-openroad-stamidpnr-2/or_metrics_out.json /nix/store/3x0iz65q90laa2wjrvxaqx13fnzp1abs-python3-3.12.10-env/lib/python3.12/site-packages/librelane/scripts/openroad/sta/corner.tcl

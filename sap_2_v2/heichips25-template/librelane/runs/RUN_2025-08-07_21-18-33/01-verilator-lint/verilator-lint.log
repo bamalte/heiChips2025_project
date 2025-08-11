@@ -1,5 +1,0 @@
-%Error: /home/user/Documents/heiChips2025_project/sap_2_v2/heichips25-template/src/heichips25_template.sv:36:9: syntax error, unexpected '.', expecting ')'
-   36 |         .BUS(uio_out[7:0]),  
-      |         ^
-        ... See the manual at https://verilator.org/verilator_doc.html?v=5.038 for more assistance.
-%Error: Exiting due to 1 error(s)

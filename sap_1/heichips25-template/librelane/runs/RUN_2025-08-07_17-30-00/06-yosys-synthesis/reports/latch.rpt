@@ -1,4 +1,0 @@
-
-16. Executing PROC_DLATCH pass (convert process syncs to latches).
-No latch inferred for signal `\controller.\ctrl_word' from process `\controller.$proc$/home/user/Documents/heiChips2025_project/sap_1/heichips25-template/src/controller.v:41$6'.
-No latch inferred for signal `\top.\bus' from process `\top.$proc$/home/user/Documents/heiChips2025_project/sap_1/heichips25-template/src/top.v:36$2'.

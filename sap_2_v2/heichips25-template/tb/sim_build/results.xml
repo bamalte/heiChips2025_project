@@ -1,6 +1,0 @@
-<testsuites name="results">
-  <testsuite name="all" package="all">
-    <property name="random_seed" value="1754591962" />
-    <testcase name="sap2_test" classname="testbench" file="/home/user/Documents/heiChips2025_project/sap_2_v2/heichips25-template/tb/testbench.py" lineno="13" time="0.7423903942108154" sim_time_ns="1390.001" ratio_time="1872.3316072504078" />
-  </testsuite>
-</testsuites>

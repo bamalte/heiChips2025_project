@@ -1,9 +1,0 @@
-{
-    "json_h": "/home/user/Documents/heiChips2025_project/sap_2_v2/heichips25-template/librelane/runs/RUN_2025-08-07_21-42-39/05-yosys-jsonheader/heichips25_template.h.json",
-    "metrics": {
-        "design__lint_error__count": 0,
-        "design__lint_timing_construct__count": 0,
-        "design__lint_warning__count": 50,
-        "design__inferred_latch__count": 0
-    }
-}
