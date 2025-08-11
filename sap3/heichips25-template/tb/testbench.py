@@ -27,114 +27,115 @@ async def sap_three_test(dut):
     dut.io_in.value = 1
     await Timer(100, 'ns')
 
-    # Wait for 50 clock cycles
-    await ClockCycles(dut.clk, 50)
+    # Wait for 100 clock cycles
+    # await ClockCycles(dut.clk, 100)
+    await ClockCycles(dut.clk, 100)
 
     # Ensure the output is 0x01
-    print(f"The current output is: {dut.heichips25_template_inst.out_unused.value}, and should be: 0x01")
-    assert dut.heichips25_template_inst.out_unused == 1, "Output is not 1!"
+    print(f"The current output is: {dut.heichips25_template_inst.sap_3_outputReg.value}, and should be: 0x01")
+    assert dut.heichips25_template_inst.sap_3_outputReg == 1, "Output is not 1!"
 
-    # Wait for 50 clock cycles
-    await ClockCycles(dut.clk, (50))
+    # Wait for 100 clock cycles
+    await ClockCycles(dut.clk, (100))
 
     # Ensure the output is 0x02
-    print(f"The current output is: {dut.heichips25_template_inst.out_unused.value}, and should be: 0x02")
-    assert dut.heichips25_template_inst.out_unused == 2, "Output is not 2!"
+    print(f"The current output is: {dut.heichips25_template_inst.sap_3_outputReg.value}, and should be: 0x02")
+    assert dut.heichips25_template_inst.sap_3_outputReg == 2, "Output is not 2!"
 
-    # Wait for 50 clock cycles
-    await ClockCycles(dut.clk, (50))
+    # Wait for 100 clock cycles
+    await ClockCycles(dut.clk, (100))
 
     # Ensure the output is 0x04
-    print(f"The current output is: {dut.heichips25_template_inst.out_unused.value}, and should be: 0x04")
-    assert dut.heichips25_template_inst.out_unused == 4, "Output is not 4!"
+    print(f"The current output is: {dut.heichips25_template_inst.sap_3_outputReg.value}, and should be: 0x04")
+    assert dut.heichips25_template_inst.sap_3_outputReg == 4, "Output is not 4!"
 
-    # Wait for 50 clock cycles
-    await ClockCycles(dut.clk, (50))
+    # Wait for 100 clock cycles
+    await ClockCycles(dut.clk, (100))
 
     # Ensure the output is 0x08
-    print(f"The current output is: {dut.heichips25_template_inst.out_unused.value}, and should be: 0x08")
-    assert dut.heichips25_template_inst.out_unused == 8, "Output is not 8!"
+    print(f"The current output is: {dut.heichips25_template_inst.sap_3_outputReg.value}, and should be: 0x08")
+    assert dut.heichips25_template_inst.sap_3_outputReg == 8, "Output is not 8!"
 
-    # Wait for 50 clock cycles
-    await ClockCycles(dut.clk, (50))
+    # Wait for 100 clock cycles
+    await ClockCycles(dut.clk, (120))
 
     # Ensure the output is 0x10
-    print(f"The current output is: {dut.heichips25_template_inst.out_unused.value}, and should be: 0x10")
-    assert dut.heichips25_template_inst.out_unused == 16, "Output is not 16!"
+    print(f"The current output is: {dut.heichips25_template_inst.sap_3_outputReg.value}, and should be: 0x10")
+    assert dut.heichips25_template_inst.sap_3_outputReg == 16, "Output is not 16!"
 
-    # Wait for 50 clock cycles
-    await ClockCycles(dut.clk, (60))
+    # Wait for 100 clock cycles
+    await ClockCycles(dut.clk, (120))
 
     # Ensure the output is 0x20
-    print(f"The current output is: {dut.heichips25_template_inst.out_unused.value}, and should be: 0x20")
-    assert dut.heichips25_template_inst.out_unused == 32, "Output is not 32!"
+    print(f"The current output is: {dut.heichips25_template_inst.sap_3_outputReg.value}, and should be: 0x20")
+    assert dut.heichips25_template_inst.sap_3_outputReg == 32, "Output is not 32!"
 
     # Wait for 50 clock cycles
-    await ClockCycles(dut.clk, (70))
+    await ClockCycles(dut.clk, (140))
 
     # Ensure the output is 0x40
-    print(f"The current output is: {dut.heichips25_template_inst.out_unused.value}, and should be: 0x40")
-    assert dut.heichips25_template_inst.out_unused == 64, "Output is not 64!"
+    print(f"The current output is: {dut.heichips25_template_inst.sap_3_outputReg.value}, and should be: 0x40")
+    assert dut.heichips25_template_inst.sap_3_outputReg == 64, "Output is not 64!"
 
     # Wait for 50 clock cycles
-    await ClockCycles(dut.clk, (90))
+    await ClockCycles(dut.clk, (180))
 
     # Ensure the output is 0x80
-    print(f"The current output is: {dut.heichips25_template_inst.out_unused.value}, and should be: 0x80")
-    assert dut.heichips25_template_inst.out_unused == 128, "Output is not 128!"
+    print(f"The current output is: {dut.heichips25_template_inst.sap_3_outputReg.value}, and should be: 0x80")
+    assert dut.heichips25_template_inst.sap_3_outputReg == 128, "Output is not 128!"
 
     # Wait for 50 clock cycles
-    await ClockCycles(dut.clk, (70))
+    await ClockCycles(dut.clk, (140))
 
     # Ensure the output is 0x40
-    print(f"The current output is: {dut.heichips25_template_inst.out_unused.value}, and should be: 0x40")
-    assert dut.heichips25_template_inst.out_unused == 64, "Output is not 64!"
+    print(f"The current output is: {dut.heichips25_template_inst.sap_3_outputReg.value}, and should be: 0x40")
+    assert dut.heichips25_template_inst.sap_3_outputReg == 64, "Output is not 64!"
 
-    # Wait for 50 clock cycles
-    await ClockCycles(dut.clk, (50))
+    # Wait for 100 clock cycles
+    await ClockCycles(dut.clk, (100))
 
     # Ensure the output is 0x20
-    print(f"The current output is: {dut.heichips25_template_inst.out_unused.value}, and should be: 0x20")
-    assert dut.heichips25_template_inst.out_unused == 32, "Output is not 32!"
+    print(f"The current output is: {dut.heichips25_template_inst.sap_3_outputReg.value}, and should be: 0x20")
+    assert dut.heichips25_template_inst.sap_3_outputReg == 32, "Output is not 32!"
 
-    # Wait for 50 clock cycles
-    await ClockCycles(dut.clk, (50))
+    # Wait for 100 clock cycles
+    await ClockCycles(dut.clk, (100))
 
     # Ensure the output is 0x10
-    print(f"The current output is: {dut.heichips25_template_inst.out_unused.value}, and should be: 0x10")
-    assert dut.heichips25_template_inst.out_unused == 16, "Output is not 16!"
+    print(f"The current output is: {dut.heichips25_template_inst.sap_3_outputReg.value}, and should be: 0x10")
+    assert dut.heichips25_template_inst.sap_3_outputReg == 16, "Output is not 16!"
 
-    # Wait for 50 clock cycles
-    await ClockCycles(dut.clk, (50))
+    # Wait for 100 clock cycles
+    await ClockCycles(dut.clk, (100))
 
     # Ensure the output is 0x08
-    print(f"The current output is: {dut.heichips25_template_inst.out_unused.value}, and should be: 0x08")
-    assert dut.heichips25_template_inst.out_unused == 8, "Output is not 8!"
+    print(f"The current output is: {dut.heichips25_template_inst.sap_3_outputReg.value}, and should be: 0x08")
+    assert dut.heichips25_template_inst.sap_3_outputReg == 8, "Output is not 8!"
 
-    # Wait for 50 clock cycles
-    await ClockCycles(dut.clk, (70))
+    # Wait for 100 clock cycles
+    await ClockCycles(dut.clk, (140))
 
     # Ensure the output is 0x04
-    print(f"The current output is: {dut.heichips25_template_inst.out_unused.value}, and should be: 0x04")
-    assert dut.heichips25_template_inst.out_unused == 4, "Output is not 4!"
+    print(f"The current output is: {dut.heichips25_template_inst.sap_3_outputReg.value}, and should be: 0x04")
+    assert dut.heichips25_template_inst.sap_3_outputReg == 4, "Output is not 4!"
 
-    # Wait for 50 clock cycles
-    await ClockCycles(dut.clk, (50))
+    # Wait for 100 clock cycles
+    await ClockCycles(dut.clk, (100))
 
     # Ensure the output is 0x02
-    print(f"The current output is: {dut.heichips25_template_inst.out_unused.value}, and should be: 0x02")
-    assert dut.heichips25_template_inst.out_unused == 2, "Output is not 2!"
+    print(f"The current output is: {dut.heichips25_template_inst.sap_3_outputReg.value}, and should be: 0x02")
+    assert dut.heichips25_template_inst.sap_3_outputReg == 2, "Output is not 2!"
 
-    # Wait for 50 clock cycles
-    await ClockCycles(dut.clk, (50))
+    # Wait for 100 clock cycles
+    await ClockCycles(dut.clk, (100))
 
     # Ensure the output is 0x01
-    print(f"The current output is: {dut.heichips25_template_inst.out_unused.value}, and should be: 0x01")
-    assert dut.heichips25_template_inst.out_unused == 1, "Output is not 1!"
+    print(f"The current output is: {dut.heichips25_template_inst.sap_3_outputReg.value}, and should be: 0x01")
+    assert dut.heichips25_template_inst.sap_3_outputReg == 1, "Output is not 1!"
 
 
-    # Wait for 50 clock cycles
-    await ClockCycles(dut.clk, (200))
+    # Wait for 200 clock cycles
+    await ClockCycles(dut.clk, (400))
 
     # cocotb documentation: https://docs.cocotb.org/en/stable/refcard.html
     # cocotb reference card: https://docs.cocotb.org/en/stable/refcard.html

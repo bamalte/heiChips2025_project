@@ -42,6 +42,16 @@ IHP_SRAM_1024x32_wrapper IHP_SRAM_1024x32_wrapper (
 		.DOUT  (sram_dout)
 );
 
+logic [7:0] received_sap_3_reg;
+logic synced;
+deserializer #(.WIDTH(8)) rx (
+    .clk        (clk),
+    .rst        (~rst_n),
+    .serial_in  (uo_out[2]),
+    .data_out   (received_sap_3_reg),
+    .synced     (synced)
+);
+
 reg[15:0] mar;
 
 always @(posedge clk) begin

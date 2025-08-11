@@ -21,16 +21,14 @@ module IHP_SRAM_1024x32_wrapper (
         if (WEN)
             mem[ADDR] <= DIN;
 
-
-    end
-    
-    // Read on REN
-    always_comb begin
+        // Read on REN
         if (REN)
             DOUT = mem[ADDR];
         else
             DOUT = 32'b0;
+
     end
+    
     
     
 
