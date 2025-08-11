@@ -6,7 +6,7 @@ runs/
 *.a
 *.o
 *.elf
-*.hex
+*.bin
 *.bkp
 
 ice40hx8k.json

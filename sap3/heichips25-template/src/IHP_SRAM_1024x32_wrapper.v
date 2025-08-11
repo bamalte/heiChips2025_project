@@ -13,7 +13,7 @@ module IHP_SRAM_1024x32_wrapper (
     logic [31:0] mem [0:1023];
 
     initial begin
-	$readmemh("../program.bin", mem);
+	$readmemh("../program.hex", mem);
     end
     
     always_ff @(posedge clk) begin
