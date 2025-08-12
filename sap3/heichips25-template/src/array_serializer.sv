@@ -4,7 +4,7 @@ module array_serializer #(
 ) (
     input  logic                  clk,
     input  logic                  rst,
-    input  logic [WIDTH-1:0]      data   [0:DEPTH-1], // Array mit DEPTH Wörtern
+    input  logic [DEPTH*WIDTH-1:0] data_flat,
     output logic                  serial_out,        // serieller Ausgang
     output logic                  start              // Start-Puls vor jedem Byte
 );
@@ -15,6 +15,14 @@ module array_serializer #(
     logic [$clog2(WIDTH)-1:0] bit_pos;
     logic [WIDTH-1:0]         shadow_reg;
     logic [$clog2(DEPTH)-1:0] word_index; // aktueller Index im Array
+
+    logic [WIDTH-1:0] data [0:DEPTH-1];
+    genvar i;
+    generate
+      for (i = 0; i < DEPTH; i = i + 1) begin
+        assign data[i] = data_flat[i*WIDTH +: WIDTH];
+      end
+    endgenerate
 
     always_ff @(posedge clk or posedge rst) begin
         if (rst) begin

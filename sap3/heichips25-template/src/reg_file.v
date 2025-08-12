@@ -1,3 +1,6 @@
+localparam int WORD_WIDTH = 8;
+localparam int ARRAY_DEPTH = 12;
+
 module reg_file(
 	input clk,
 	input fast_clock,
@@ -29,9 +32,16 @@ module reg_file(
 // 10110  [     WZ     ]
 // 11000  [     PC     ]
 // 11010  [     SP     ]
-reg[7:0] data[0:11];
+reg[WORD_WIDTH-1:0] data[0:ARRAY_DEPTH-1];
 
-//reg[15:0] data_out;
+reg [ARRAY_DEPTH*WORD_WIDTH-1:0] data_flat;
+always @* begin
+  integer i;
+  for (i = 0; i < ARRAY_DEPTH; i = i + 1) begin
+    data_flat[i*WORD_WIDTH +: WORD_WIDTH] = data[i];
+  end
+end
+
 wire wr_ext = wr_sel[4];
 wire rd_ext = rd_sel[4];
 wire[3:0] wr_dst = wr_sel[3:0];
@@ -47,7 +57,7 @@ array_serializer #(
 ) array_serializer_inst (
 	.clk(fast_clock),
 	.rst(rst),
-	.data(data),
+	.data_flat(data_flat),
 	.serial_out(serial_out), 
 	.start(start)
 );
