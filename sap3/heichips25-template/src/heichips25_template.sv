@@ -19,7 +19,7 @@ module heichips25_template (
 );
 
     // List all unused inputs to prevent warnings
-    wire _unused = &{ena};
+    wire _unused = &{ena, uio_in};
 
     wire [15:0] bus;
     wire mem_ram_we;
