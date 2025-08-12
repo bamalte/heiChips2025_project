@@ -1,12 +1,15 @@
 module reg_file(
 	input clk,
+	input fast_clock,
 	input rst,
 	input[4:0] rd_sel,
 	input[4:0] wr_sel,
 	input[1:0] ext,
 	input we,
 	input[15:0] data_in,
-	output reg [15:0] data_out
+	output reg [15:0] data_out,
+	output serial_out,
+	output start
 );
 
 // 8-bit
@@ -37,6 +40,17 @@ wire[3:0] rd_src = rd_sel[3:0];
 localparam EXT_INC  = 2'b01;
 localparam EXT_DEC  = 2'b10;
 localparam EXT_INC2 = 2'b11;
+
+array_serializer #(
+	.WIDTH(8),
+	.DEPTH(12)
+) array_serializer_inst (
+	.clk(fast_clock),
+	.rst(rst),
+	.data(data),
+	.serial_out(serial_out), 
+	.start(start)
+);
 
 always @(posedge clk, posedge rst) begin
 	if (rst) begin

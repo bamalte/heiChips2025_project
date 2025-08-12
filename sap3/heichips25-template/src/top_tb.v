@@ -48,8 +48,24 @@ deserializer #(.WIDTH(8)) rx (
     .clk        (clk),
     .rst        (~rst_n),
     .serial_in  (uo_out[2]),
+		.start      (uo_out[3]),
     .data_out   (received_sap_3_reg),
     .synced     (synced)
+);
+
+localparam WIDTH = 8;
+localparam DEPTH = 12;
+logic [WIDTH-1:0] rx_data;
+
+array_deserializer #(
+		.WIDTH(WIDTH),
+		.DEPTH(DEPTH)
+) array_deserializer_inst (
+		.clk(clk),
+		.rst(~rst_n),
+		.serial_in(uo_out[4]),
+		.start(uo_out[5]),
+		.data_out(rx_data)
 );
 
 reg[15:0] mar;

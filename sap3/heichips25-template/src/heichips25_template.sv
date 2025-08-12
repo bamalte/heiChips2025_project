@@ -27,15 +27,19 @@ module heichips25_template (
     wire [7:0] sap_3_outputReg;
     wire sap_3_outputReg_serial;
     wire sap_3_outputReg_start_sync;
+    wire regFile_serial;
+    wire regFile_serial_start;
 
     assign uio_out = bus[7:0]; 
     assign uio_oe = bus [15:8];
     assign uo_out[0] = mem_ram_we;
     assign uo_out[1] = mem_mar_we;
     assign uo_out[2] = sap_3_outputReg_serial;
-    assign uo_out[7:3] = 5'b0;
-    
-    /*
+    assign uo_out[3] = sap_3_outputReg_start_sync;
+    assign uo_out[4] = regFile_serial;
+    assign uo_out[5] = regFile_serial_start;
+    assign uo_out[7:6] = 2'b0;
+
     logic clk_div_out;
     clk_div_param #(
         .DIVIDE_BY(2)
@@ -44,23 +48,26 @@ module heichips25_template (
         .rst_n(rst_n),
         .clk_out(clk_div_out)
     );
-    */
 
     top sap_3_inst (
-        .CLK(clk),
+        .CLK(clk_div_out),
+        .fast_clock(clk),
         .rst(~rst_n),
         .out(sap_3_outputReg),
         .mem_out(ui_in),
         .bus(bus),
         .mem_ram_we(mem_ram_we),
-        .mem_mar_we(mem_mar_we)
+        .mem_mar_we(mem_mar_we),
+        .serial_out_regFile(regFile_serial),
+        .serial_start_regFile(regFile_serial_start)
     );
 
     serializer #(.WIDTH(8)) u_ser (
         .clk        (clk),
         .rst        (~rst_n),
         .data_in    (sap_3_outputReg),
-        .serial_out (sap_3_outputReg_serial)
+        .serial_out (sap_3_outputReg_serial),
+        .start      (sap_3_outputReg_start_sync)
     );
 
 

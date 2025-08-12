@@ -28,7 +28,6 @@ async def sap_three_test(dut):
     await Timer(100, 'ns')
 
     # Wait for 100 clock cycles
-    # await ClockCycles(dut.clk, 100)
     await ClockCycles(dut.clk, 100)
 
     # Ensure the output is 0x01
