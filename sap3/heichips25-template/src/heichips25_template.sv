@@ -34,7 +34,8 @@ module heichips25_template (
     assign uo_out[1] = mem_mar_we;
     assign uo_out[2] = sap_3_outputReg_serial;
     assign uo_out[7:3] = 5'b0;
-
+    
+    /*
     logic clk_div_out;
     clk_div_param #(
         .DIVIDE_BY(2)
@@ -43,9 +44,10 @@ module heichips25_template (
         .rst_n(rst_n),
         .clk_out(clk_div_out)
     );
+    */
 
     top sap_3_inst (
-        .CLK(clk_div_out),
+        .CLK(clk),
         .rst(~rst_n),
         .out(sap_3_outputReg),
         .mem_out(ui_in),
