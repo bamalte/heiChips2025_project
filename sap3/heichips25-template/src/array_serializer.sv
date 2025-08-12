@@ -49,7 +49,7 @@ module array_serializer #(
                 end
 
                 SEND_BITS: begin
-                    if (bit_pos == WIDTH-1) begin
+                    if (bit_pos == logic' (WIDTH-1)) begin
                         // Nächstes Wort vorbereiten (kontinuierlich)
                         if (word_index == DEPTH-1)
                             word_index <= 0;
@@ -61,6 +61,10 @@ module array_serializer #(
                         bit_pos    <= bit_pos + 1;
                         serial_out <= shadow_reg[bit_pos + 1];
                     end
+                end
+
+                default: begin
+                    state <= IDLE;
                 end
             endcase
         end

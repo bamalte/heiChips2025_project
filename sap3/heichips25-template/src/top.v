@@ -11,8 +11,6 @@ module top(
 	output wire serial_start_regFile
 	);
 
-//reg[15:0] bus;
-reg[23:0] clk_slow;
 wire hlt;
 wire clk;
 wire[4:0] reg_rd_sel;
@@ -21,10 +19,7 @@ wire[1:0] reg_ext;
 wire reg_oe;
 wire reg_we;
 wire[15:0] reg_out;
-//wire mem_mar_we;
-//wire mem_ram_we;
 wire mem_oe;
-//wire[7:0] mem_out;
 wire ir_we;
 wire[7:0] ir_out;
 wire alu_cs;
@@ -43,9 +38,9 @@ wire display;
 
 always @(posedge clk, posedge rst) begin
 	if (rst) begin
-		out = 8'b0;
+		out <= 8'b0;
 	end else if (display) begin
-		out = alu_out;
+		out <= alu_out;
 	end
 end
 
@@ -64,7 +59,6 @@ end
 
 clock clock(
 	.hlt(hlt),
-	//.clk_in(clk_slow[14]),
 	.clk_in(CLK),
 	.clk_out(clk)
 );
@@ -83,17 +77,6 @@ reg_file reg_file(
 	.serial_out(serial_out_regFile),
 	.start(serial_start_regFile)
 );
-
-/*
-memory memory(
-	.clk(clk),
-	.rst(rst),
-	.mar_we(mem_mar_we),
-	.ram_we(mem_ram_we),
-	.bus(bus),
-	.out(mem_out)
-);
-*/
 
 ir ir(
 	.clk(clk),

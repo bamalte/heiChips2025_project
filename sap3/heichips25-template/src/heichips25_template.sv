@@ -3,7 +3,7 @@
 
 // Adapted from the Tiny Tapeout template
 
-// THIS IS THE SIMULATION
+// BRANCH: simulation_sap-3
 
 `default_nettype none
 
